@@ -22,7 +22,7 @@ if [ "$1" = "update" ]; then
 fi ;
  
  # update updater
- if [ "$update_status" -eq "true" ]; then
+ if [ "$update_status" = "true" ]; then
  	wget -O $0 $update_source
  	$0
  	exit 0
@@ -85,7 +85,11 @@ fi ;
 	fi ;
 
 	# moving to ts3_dir
-	mv -v -f * $dir_ts3
+	cp -v -fr * $dir_ts3
+
+# cleaning temp files
+
+rm -v -fr $dir_temp
 
 # starting ts3server
 
