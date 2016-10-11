@@ -43,7 +43,7 @@ fi ;
 		echo "Can be remove old backups ? (y/n)"
 		answer="0"
 		while [ "$answer" = "0" ]; do
-			read $answer
+			read answer
 			if [ "$answer" = "y" -o "$answer" = "yes" -o "$answer" = "Y" ]; then
 				answer="yes"
 				rm -v $dir_backup/*.tar
