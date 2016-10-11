@@ -3,7 +3,7 @@
 # About: Update TeamSpeak 3 server automatically
 # Author: liberodark & ERGY13
 # Project: TS3-Update
-# License: GNU GPLv3
+# License: GNU GPLv3 1
 
  # init
 
