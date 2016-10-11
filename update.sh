@@ -17,7 +17,7 @@ update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2
 update_status="false"
  
  # update updater
- if [ $update_status ]; then
+ if [ $update_status -eq true ]; then
  	wget -O $0 $update_source
  	$0
  	exit 0
