@@ -1,16 +1,79 @@
-#!/usr/bin/env bash
-# Save stdin to file descriptor 5
-exec 5<&0
+#!/bin/bash
 #
-# About: This is the most widely used and fastest shell script to update all your TeamSpeak 3 server instances.
+# About: Update TeamSpeak 3 server automatically
 # Author: liberodark & ERGY13
-# Project: thunder-x.fr
+# Project: TS3-Update
 # License: GNU GPLv3
 
+ # init
+
+dir_temp="/tmp/ts3-updater-$(RANDOM)"
+dir_ts3=$(pwd)
+dir_backup="$dir_ts3/backup"
+link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGFy"
+link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
+server_arch=???
+
+ # stop ts3server
 ./ts3server_startscript.sh stop
 
-wget http://yurfile.altervista.org/download.php?fid=L1RTMy90czMudGFy
+ # backup ts3server
 
-tar -xvf ts3.tar
+ 	# make dir
+	if [ ! -e $dir_backup ]; then
+		mkdir $dir_backup
+	fi ;
 
+	# remove old backups
+	if [ ! $(ls $dir_backup | wc -l) -eq 0 ]; then
+		echo "Can be remove old backups ? (y/n)"
+		answer="0"
+		while [ "$answer" = "0" ]; do
+			read $answer
+			if [ "$answer" = "y" -o "$answer" = "yes" -o "$answer" = "Y" ]; then
+				answer="yes"
+				rm -v $dir_backup/*.tar
+			elif [ "$answer" = "n" -o "$answer" = "no" -o "$answer" = "N" ]; then
+				answer="no"
+			else
+				answer="0"
+				echo "je n'ai pas compris. Voulez-vous retirer les anciens backups ? (y/n)"
+			fi ;
+		done ;
+	fi ;
+
+	# make backup
+	tar -v -cf "$dir_backup/$(date +%Y%m%d%H%M).tar" *
+
+# download last update
+	
+	# make temp directory for update
+	if [ ! -e $dir_temp ]; then
+		mkdir $dir_temp
+	else
+		echo "The folder '$dir_temp' can't be created."
+		exit 1
+	fi ;
+
+	# downloading
+	cd $dir_temp
+
+	if [ $server_arch = "x64" ]; then
+		wget -O ts3.tar $link_ts3_x64
+	else
+		wget -O ts3.tar $link_ts3_x32
+	fi ;
+
+	# extracting
+	tar -v -xf ts3.tar
+	if [ ! -e "ts3server_startscript.sh" ]; then
+		cd *
+	fi ;
+
+	# moving to ts3_dir
+	mv * $dir_ts3
+
+# starting ts3server
+
+cd $dir_ts3
 ./ts3server_startscript.sh start
