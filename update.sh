@@ -14,12 +14,12 @@ link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGF
 link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
 server_arch=???
 update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
-update_status="true"
+update_status="false"
  
  # update updater
  if [ $update_status ]; then
  	wget -O $0 $update_source
- 	./$0
+ 	$0
  	exit 0
  fi ;
 
