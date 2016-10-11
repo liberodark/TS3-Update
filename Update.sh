@@ -13,7 +13,7 @@ dir_backup="$dir_ts3/backup"
 link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGFy"
 link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
 server_arch=???
-update_source="https://github.com/liberodark/TS3-Update/blob/master/Update.sh"
+update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
 update_status="false"
  
  # update updater
