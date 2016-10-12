@@ -3,7 +3,7 @@
 # About: Update TeamSpeak 3 server automatically
 # Author: liberodark & ERGY13
 # Project: TS3-Update
-# License: GNU GPLv3 1
+# License: GNU GPLv3
 
  # init
 
@@ -46,7 +46,8 @@ fi ;
 			read answer
 			if [ "$answer" = "y" -o "$answer" = "yes" -o "$answer" = "Y" ]; then
 				answer="yes"
-				rm -v $dir_backup/*.tar
+				rm $dir_backup/*.tar
+				echo "old backups deleted"
 			elif [ "$answer" = "n" -o "$answer" = "no" -o "$answer" = "N" ]; then
 				answer="no"
 			else
@@ -57,7 +58,8 @@ fi ;
 	fi ;
 
 	# make backup
-	tar -v -cf "$dir_backup/$(date +%Y%m%d%H%M).tar" *
+	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M).tar"  --exclude="backup*" *
+	echo "backup done."
 
 # download last update
 	
@@ -77,19 +79,22 @@ fi ;
 	else
 		wget -O ts3.tar $link_ts3_x32
 	fi ;
+	echo "newest version downloaded."
 
 	# extracting
-	tar -v -xf ts3.tar
+	tar -xf ts3.tar
 	if [ ! -e "ts3server_startscript.sh" ]; then
 		cd *
 	fi ;
+	echo "files extracted."
 
 	# moving to ts3_dir
-	cp -v -fr * $dir_ts3
+	cp -fr * $dir_ts3
+	echo "server updated"
 
 # cleaning temp files
 
-rm -v -fr $dir_temp
+rm -fr $dir_temp
 
 # starting ts3server
 
