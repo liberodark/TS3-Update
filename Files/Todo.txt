@@ -1,3 +1,5 @@
+Auto Update Script
+Auto detection Arch
 Add Auto server modified
 
 
