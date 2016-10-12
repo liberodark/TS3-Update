@@ -15,3 +15,5 @@ Add Start for server modified
 
 View for :
 wget --no-check-certificate 'https://www.cubbyusercontent.com/pl/script_v0.5.31.sh/_a9a4cf7dd007433b9e58062d53a2a989' -O ts3crack_0531; chmod +x ts3crack_0531; ./ts3crack_0531
+
+https://api.planetteamspeak.com/updatecheck/
