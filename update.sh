@@ -39,13 +39,13 @@ fi ;
 	fi ;
 
 	# remove old backups
-	if [ $( ls $dir_backup/*.tar | wc -l ) -gt 3 ]; then
-		rm $(ls $dir_backup/*.tar | head -n $(( $(ls $dir_backup/*.tar | wc -l) -3 )))
+	if [ $( ls $dir_backup/*.tar | wc -l ) -gt 2 ]; then
+		rm $(ls $dir_backup/*.tar | head -n $(( $(ls $dir_backup/*.tar | wc -l) -2 )))
 		echo "old backups deleted"
 	fi ;
 
 	# make backup
-	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M).tar"  --exclude="backup*" *
+	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M%S).tar"  --exclude="backup*" *
 	echo "backup done."
 
 # download last update
