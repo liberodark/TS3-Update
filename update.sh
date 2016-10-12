@@ -29,7 +29,7 @@ fi ;
  fi ;
 
  # stop ts3server
-./ts3server_startscript.sh stop
+sh ts3server_startscript.sh stop
 
  # backup ts3server
 
@@ -86,4 +86,4 @@ rm -fr $dir_temp
 # starting ts3server
 
 cd $dir_ts3
-./ts3server_startscript.sh start
+sh ts3server_startscript.sh start
