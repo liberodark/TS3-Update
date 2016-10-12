@@ -40,7 +40,7 @@ fi ;
 
 	# remove old backups
 	if [ $( ls $dir_backup/*.tar | wc -l ) -gt 3 ]; then
-		rm $(ls $dir_backup/*.tar | head -n $(( $(ls | wc -l) -3 )))
+		rm $(ls $dir_backup/*.tar | head -n $(( $(ls $dir_backup/*.tar | wc -l) -3 )))
 		echo "old backups deleted"
 	fi ;
 
