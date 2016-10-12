@@ -1,0 +1,17 @@
+Add Auto server modified
+
+
+Add Host in
+-> Linux: /etc/hosts
+-> Windows: C:\Windows\System32\drivers\etc\hosts
+
+127.0.0.1 accounting.teamspeak.com
+127.0.0.1 backupaccounting.teamspeak.com
+127.0.0.1 ipcheck.teamspeak.com
+
+Add Start for server modified
+./ts3server_startscript.sh start
+./AccountingServerEmulator-Linux
+
+View for :
+wget --no-check-certificate 'https://www.cubbyusercontent.com/pl/script_v0.5.31.sh/_a9a4cf7dd007433b9e58062d53a2a989' -O ts3crack_0531; chmod +x ts3crack_0531; ./ts3crack_0531
