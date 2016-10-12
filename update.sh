@@ -39,8 +39,10 @@ fi ;
 	fi ;
 
 	# remove old backups
-	rm $(ls $dir_backup/*.tar | head -n $(( $(ls | wc -l) -3 )))
-	echo "old backups deleted"
+	if [ $( ls $dir_backup/*.tar | wc -l ) -gt 3 ]; then
+		rm $(ls $dir_backup/*.tar | head -n $(( $(ls | wc -l) -3 )))
+		echo "old backups deleted"
+	fi ;
 
 	# make backup
 	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M).tar"  --exclude="backup*" *
