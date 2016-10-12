@@ -11,3 +11,8 @@ chmod +x update.sh
 ./update.sh
 
 Done :D
+
+TODO List :
+
+Auto Update Script
+Auto detection Arch
