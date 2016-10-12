@@ -39,23 +39,8 @@ fi ;
 	fi ;
 
 	# remove old backups
-	if [ ! $(ls $dir_backup | wc -l) -eq 0 ]; then
-		echo "Can be remove old backups ? (y/n)"
-		answer="0"
-		while [ "$answer" = "0" ]; do
-			read answer
-			if [ "$answer" = "y" -o "$answer" = "yes" -o "$answer" = "Y" ]; then
-				answer="yes"
-				rm $dir_backup/*.tar
-				echo "old backups deleted"
-			elif [ "$answer" = "n" -o "$answer" = "no" -o "$answer" = "N" ]; then
-				answer="no"
-			else
-				answer="0"
-				echo "je n'ai pas compris. Voulez-vous retirer les anciens backups ? (y/n)"
-			fi ;
-		done ;
-	fi ;
+	rm $(ls $dir_backup/*.tar | head -n $(( $(ls | wc -l) -3 )))
+	echo "old backups deleted"
 
 	# make backup
 	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M).tar"  --exclude="backup*" *
