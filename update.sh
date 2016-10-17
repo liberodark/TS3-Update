@@ -14,17 +14,18 @@ link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGF
 link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
 server_arch=???
 update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
-update_status="false"
 
 	# make update if asked
-if [ "$1" = "update" ]; then
+if [ "$1" = "noupdate" ]; then
+	update_status="false"
+else
 	update_status="true"
 fi ;
  
  # update updater
  if [ "$update_status" = "true" ]; then
  	wget -O $0 $update_source
- 	$0
+ 	$0 noupdate
  	exit 0
  fi ;
 
