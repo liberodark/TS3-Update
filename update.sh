@@ -12,7 +12,7 @@ dir_ts3=$(pwd)
 dir_backup="$dir_ts3/backup"
 link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGFy"
 link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
-server_arch=???
+server_arch=$(uname -m)
 update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
 
 	# make update if asked
@@ -62,7 +62,7 @@ sh ts3server_startscript.sh stop
 	# downloading
 	cd $dir_temp
 
-	if [ $server_arch = "x64" ]; then
+	if [ $server_arch = "x86_64" ]; then
 		wget -O ts3.tar $link_ts3_x64
 	else
 		wget -O ts3.tar $link_ts3_x32
