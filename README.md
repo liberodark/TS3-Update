@@ -15,5 +15,5 @@ Done :D
 TODO List :
 
 [x] Auto Update Script
-[ ] Auto detection Arch
+[x] Auto detection Arch
 [ ] Auto select latest version of ts3-server
