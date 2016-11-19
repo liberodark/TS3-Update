@@ -14,6 +14,9 @@ link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGF
 link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
 server_arch=$(uname -m)
 update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
+version="1.9.1"
+
+echo "Welcome on TS3-Updater $version"
 
 	# make update if asked
 if [ "$1" = "noupdate" ]; then
@@ -71,6 +74,7 @@ sh ts3server_startscript.sh stop
 
 	# extracting
 	tar -xf ts3.tar
+	rm ts3.tar
 	if [ ! -e "ts3server_startscript.sh" ]; then
 		cd *
 	fi ;
