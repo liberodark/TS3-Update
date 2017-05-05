@@ -10,11 +10,13 @@
 dir_temp="/tmp/ts3-updater-$RANDOM"
 dir_ts3=$(pwd)
 dir_backup="$dir_ts3/backup"
-link_ts3_x32="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4MzIudGFy"
-link_ts3_x64="http://yurfile.altervista.org/download.php?fid=L1RTMy90czN4NjQudGFy"
+link_ts3_x32="http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux_x86-3.0.13.6.tar.bz2"
+link_ts3_x64="http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux_amd64-3.0.13.6.tar.bz2"
+link_ts3_x32_cracked=""
+link_ts3_x64_cracked=""
 server_arch=$(uname -m)
-update_source="http://yurfile.altervista.org/download.php?fid=L1RTMy91cGRhdGUuc2g="
-version="1.9.1"
+update_source="https://github.com/liberodark/TS3-Update/blob/master/update.sh"
+version="1.9.2"
 
 echo "Welcome on TS3-Updater $version"
 
@@ -52,6 +54,13 @@ sh ts3server_startscript.sh stop
 	tar -cf "$dir_backup/backup-$(date +%Y%m%d%H%M%S).tar"  --exclude="backup*" *
 	echo "backup done."
 
+# check if ts3server is cracked
+	if [ -e "AccountingServerEmulator-Linux" ]; then
+		cracked="true"
+	else
+		cracked="false"
+	fi ;
+
 # download last update
 	
 	# make temp directory for update
@@ -65,11 +74,25 @@ sh ts3server_startscript.sh stop
 	# downloading
 	cd $dir_temp
 
-	if [ $server_arch = "x86_64" ]; then
-		wget -O ts3.tar $link_ts3_x64
+	if [ $cracked = "true" ]; then
+
+		echo "127.0.0.1 accounting.teamspeak.com" >> /etc/hosts
+		echo "127.0.0.1 backupaccounting.teamspeak.com" >> /etc/hosts
+		echo "127.0.0.1 ipcheck.teamspeak.com" >> /etc/hosts
+
+		if [ $server_arch = "x86_64" ]; then
+			wget -O ts3.tar $link_ts3_x64_cracked
+		else
+			wget -O ts3.tar $link_ts3_x32_cracked
+		fi ;
 	else
-		wget -O ts3.tar $link_ts3_x32
+		if [ $server_arch = "x86_64" ]; then
+			wget -O ts3.tar $link_ts3_x64
+		else
+			wget -O ts3.tar $link_ts3_x32
+		fi ;
 	fi ;
+
 	echo "newest version downloaded."
 
 	# extracting
