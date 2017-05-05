@@ -15,8 +15,8 @@ link_ts3_x64="http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux
 link_ts3_x32_cracked=""
 link_ts3_x64_cracked=""
 server_arch=$(uname -m)
-update_source="https://github.com/liberodark/TS3-Update/blob/master/update.sh"
-version="1.9.2"
+update_source="https://raw.githubusercontent.com/liberodark/TS3-Update/master/update.sh"
+version="1.9.3"
 
 echo "Welcome on TS3-Updater $version"
 
@@ -26,7 +26,7 @@ if [ "$1" = "noupdate" ]; then
 else
 	update_status="true"
 fi ;
- 
+
  # update updater
  if [ "$update_status" = "true" ]; then
  	wget -O $0 $update_source
@@ -62,7 +62,7 @@ sh ts3server_startscript.sh stop
 	fi ;
 
 # download last update
-	
+
 	# make temp directory for update
 	if [ ! -e $dir_temp ]; then
 		mkdir $dir_temp
