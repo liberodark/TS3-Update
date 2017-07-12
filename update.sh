@@ -10,8 +10,8 @@
 dir_temp="/tmp/ts3-updater-$RANDOM"
 dir_ts3=$(pwd)
 dir_backup="$dir_ts3/backup"
-link_ts3_x32="http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux_x86-3.0.13.6.tar.bz2"
-link_ts3_x64="http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux_amd64-3.0.13.6.tar.bz2"
+link_ts3_x32="http://dl.4players.de/ts/releases/3.0.13.7/teamspeak3-server_linux_x86-3.0.13.7.tar.bz2"
+link_ts3_x64="http://dl.4players.de/ts/releases/3.0.13.7/teamspeak3-server_linux_amd64-3.0.13.7.tar.bz2"
 link_ts3_x32_cracked=""
 link_ts3_x64_cracked=""
 server_arch=$(uname -m)
