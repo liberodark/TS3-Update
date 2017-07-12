@@ -16,7 +16,7 @@ link_ts3_x32_cracked=""
 link_ts3_x64_cracked=""
 server_arch=$(uname -m)
 update_source="https://raw.githubusercontent.com/liberodark/TS3-Update/master/update.sh"
-version="1.9.3"
+version="1.9.4"
 
 echo "Welcome on TS3-Updater $version"
 
