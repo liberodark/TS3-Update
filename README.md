@@ -10,6 +10,10 @@ chmod +x update.sh
 
 ./update.sh
 
+or
+
+wget -Nnv https://github.com/liberodark/TS3-Update/releases/download/1.9.5/update.sh && chmod +x update.sh; ./update.sh
+
 Done :D
 
 TODO List :
