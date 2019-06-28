@@ -29,7 +29,7 @@ fi ;
 
  # update updater
  if [ "$update_status" = "true" ]; then
- 	wget -O $0 $update_source
+ 	wget -O "$0" $update_source
  	$0 noupdate
  	exit 0
  fi ;
@@ -40,13 +40,13 @@ sh ts3server_startscript.sh stop
  # backup ts3server
 
  	# make dir
-	if [ ! -e $dir_backup ]; then
-		mkdir $dir_backup
+	if [ ! -e "$dir_backup" ]; then
+		mkdir "$dir_backup"
 	fi ;
 
 	# remove old backups
-	if [ $( ls $dir_backup/*.tar | wc -l ) -gt 2 ]; then
-		rm $(ls $dir_backup/*.tar | head -n $(( $(ls $dir_backup/*.tar | wc -l) -2 )))
+	if [ $( ls "$dir_backup"/*.tar | wc -l ) -gt 2 ]; then
+		rm $(ls "$dir_backup"/*.tar | head -n $(( $(ls "$dir_backup"/*.tar | wc -l) -2 )))
 		echo "old backups deleted"
 	fi ;
 
@@ -72,21 +72,23 @@ sh ts3server_startscript.sh stop
 	fi ;
 
 	# downloading
-	cd $dir_temp
+	cd $dir_temp || exit
 
 	if [ $cracked = "true" ]; then
+	
+		{
+                echo 127.0.0.1 accounting.teamspeak.com
+                127.0.0.1 backupaccounting.teamspeak.com
+                127.0.0.1 ipcheck.teamspeak.com
+                } >> /etc/hosts
 
-		echo "127.0.0.1 accounting.teamspeak.com" >> /etc/hosts
-		echo "127.0.0.1 backupaccounting.teamspeak.com" >> /etc/hosts
-		echo "127.0.0.1 ipcheck.teamspeak.com" >> /etc/hosts
-
-		if [ $server_arch = "x86_64" ]; then
+		if [ "$server_arch" = "x86_64" ]; then
 			wget -O ts3.tar $link_ts3_x64_cracked
 		else
 			wget -O ts3.tar $link_ts3_x32_cracked
 		fi ;
 	else
-		if [ $server_arch = "x86_64" ]; then
+		if [ "$server_arch" = "x86_64" ]; then
 			wget -O ts3.tar $link_ts3_x64
 		else
 			wget -O ts3.tar $link_ts3_x32
@@ -99,12 +101,12 @@ sh ts3server_startscript.sh stop
 	tar -xf ts3.tar
 	rm ts3.tar
 	if [ ! -e "ts3server_startscript.sh" ]; then
-		cd *
+		cd * || exit
 	fi ;
 	echo "files extracted."
 
 	# moving to ts3_dir
-	cp -fr * $dir_ts3
+	cp -fr * "$dir_ts3"
 	echo "server updated"
 
 # cleaning temp files
@@ -113,5 +115,5 @@ rm -fr $dir_temp
 
 # starting ts3server
 
-cd $dir_ts3
+cd "$dir_ts3" || exit
 sh ts3server_startscript.sh start
